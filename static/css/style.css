@@ -1,0 +1,17 @@
+body { font-family: 'Segoe UI', system-ui, sans-serif; }
+
+.card { border: none; border-radius: 12px; }
+.card-header { border-radius: 12px 12px 0 0 !important; border-bottom: 1px solid #f0f0f0; }
+.card.shadow-sm { transition: box-shadow 0.15s; }
+.card.shadow-sm:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.10) !important; }
+
+.like-btn.active { color: #dc3545; border-color: #dc3545; background: #fff0f0; }
+.like-btn.active i { color: #dc3545; }
+
+.form-control:focus { box-shadow: 0 0 0 3px rgba(13,110,253,0.15); }
+textarea.form-control { resize: none; }
+
+.navbar { padding: 0.5rem 0; }
+.navbar .badge { font-size: 9px; padding: 3px 5px; }
+
+hr { opacity: 0.08; }

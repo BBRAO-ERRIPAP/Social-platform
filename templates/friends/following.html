@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Following — SocialHub{% endblock %}
+{% block content %}
+<h5 class="mb-3">@{{ profile_user.username }} is following</h5>
+<div class="row g-3">
+  {% for f in following %}
+  <div class="col-md-4">
+    <div class="card shadow-sm p-3 d-flex flex-row align-items-center gap-3">
+      <div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center"
+           style="width:40px;height:40px">
+        {{ f.following.username|first|upper }}
+      </div>
+      <a href="{% url 'profile' f.following.username %}"
+         class="text-decoration-none text-dark fw-semibold">{{ f.following.username }}</a>
+    </div>
+  </div>
+  {% empty %}
+  <p class="text-muted">Not following anyone yet.</p>
+  {% endfor %}
+</div>
+{% endblock %}

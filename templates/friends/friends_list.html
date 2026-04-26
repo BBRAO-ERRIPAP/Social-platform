@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}Friends — SocialHub{% endblock %}
+{% block content %}
+<div class="row g-4">
+  <div class="col-lg-8">
+    <h5 class="mb-3">Your Friends ({{ friends|length }})</h5>
+    <div class="row g-3">
+      {% for friend in friends %}
+      <div class="col-md-4">
+        <div class="card shadow-sm text-center p-3">
+          <div class="rounded-circle bg-primary text-white mx-auto mb-2
+                      d-flex align-items-center justify-content-center"
+               style="width:52px;height:52px;font-size:22px">
+            {{ friend.username|first|upper }}
+          </div>
+          <a href="{% url 'profile' friend.username %}"
+             class="fw-semibold text-decoration-none text-dark">
+            {{ friend.get_full_name|default:friend.username }}
+          </a>
+          <small class="text-muted">@{{ friend.username }}</small>
+        </div>
+      </div>
+      {% empty %}
+      <p class="text-muted">No friends yet.</p>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-lg-4">
+    {% if pending_requests %}
+    <div class="card shadow-sm">
+      <div class="card-header bg-white fw-semibold">Pending Requests</div>
+      <ul class="list-group list-group-flush">
+        {% for req in pending_requests %}
+        <li class="list-group-item">
+          <div class="fw-semibold small">{{ req.sender.username }}</div>
+          <form method="post" action="{% url 'respond_friend_request' req.id %}"
+                class="d-flex gap-2 mt-1">
+            {% csrf_token %}
+            <button name="action" value="accept" class="btn btn-sm btn-success">Accept</button>
+            <button name="action" value="decline" class="btn btn-sm btn-outline-danger">Decline</button>
+          </form>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

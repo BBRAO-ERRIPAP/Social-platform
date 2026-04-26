@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Suggested Users</h2>
+
+{% for user in suggestions %}
+    <div>
+        <a href="{% url 'profile' user.username %}">
+            {{ user.username }}
+        </a>
+    </div>
+{% empty %}
+    <p>No users to suggest</p>
+{% endfor %}
+
+{% endblock %}
